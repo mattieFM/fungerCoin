@@ -25,32 +25,62 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             background-color: black;
-
         }
         video {
             margin-top: 20px;
-            max-width: 90%;
+            width: 100%;
+            max-width: 300px;
+        }
+        #video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div id="result"></div>
     <header>
-    <button onclick="flipCoin()">Flip Coin</button>
+    <input type="number" id="caharahBussy" name="caharahBussy" value="1" style="width:1.5%">
+    <button onclick="flipCoin(event)">Flip Coin</button>
     </header>
 
     <script>
-        function flipCoin() {
-            const resultDiv = document.getElementById('result');
-            const isHeads = Math.random() < 0.5;
-            const videoSrc = isHeads ? 'head.mp4' : 'tail.mp4';
+        function getCoinDisplayCunt(){
+            const isHeads1 = Math.random() < 0.5;
+            const videoSrc1 = isHeads1 ? 'head.mp4' : 'tail.mp4';
 
-            resultDiv.innerHTML = `
-                <video autoplay>
-                    <source src="${videoSrc}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            return `
+            <video autoplay>
+                <source src="${videoSrc1}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            `
+        }
+
+        function getCoinsNOWBitch(n){
+            let eax = ``;
+            for(let i = 0; i < n; i++){
+                eax+=getCoinDisplayCunt();
+            }
+            return eax;
+        }
+
+        function flipCoin(event) {
+            const number = parseInt(document.getElementById('caharahBussy').value);
+            const resultDiv = document.getElementById('result');
+            const isShiftHeld = event.shiftKey;
+            let result = number + isShiftHeld;
+            let innerHTML = `
+            <div id="video-container">
+                ${getCoinsNOWBitch(result)}
+            </div>
             `;
+            console.log(getCoinsNOWBitch(result));
+            resultDiv.innerHTML=innerHTML;
+
         }
     </script>
 </body>
