@@ -48,9 +48,25 @@
     </header>
 
     <script>
+        let numberGlobal = 0;
+        let lowresCutoff = 6;
+        const tailsNorm="tail.mp4"
+        const tailsLow="tailLow.mp4"
+        const headsNorm="head.mp4"
+        const headsLow="headLow.mp4"
+
+        function getHead(){
+            return numberGlobal < lowresCutoff ? tailsNorm : tailsLow
+        }
+
+        function getTail(){
+            return numberGlobal < lowresCutoff ? headsNorm : headsLow
+        }
+
+        
         function getCoinDisplayCunt(){
             const isHeads1 = Math.random() < 0.5;
-            const videoSrc1 = isHeads1 ? 'head.mp4' : 'tail.mp4';
+            const videoSrc1 = isHeads1 ? getHead() : getTail();
 
             return `
             <video autoplay>
@@ -73,6 +89,7 @@
             const resultDiv = document.getElementById('result');
             const isShiftHeld = event.shiftKey;
             let result = number + isShiftHeld;
+            numberGlobal=result;
             let innerHTML = `
             <div id="video-container">
                 ${getCoinsNOWBitch(result)}
