@@ -27,7 +27,7 @@
             background-color: black;
         }
         video {
-            margin-top: 20px;
+            margin-top: 0px;
             width: 100%;
             max-width: 300px;
         }
@@ -39,17 +39,42 @@
             margin-top: 20px;
         }
     </style>
+
+    <script>
+
+        function changeBackground() {
+            console.log("here")
+            const selectElement = document.getElementById("backgroundSelect");
+            const backgroundDance = document.getElementById("backgroundDance");
+            currentBackground = selectElement.value;
+            
+            backgroundDance.innerHTML = `
+            <video autoplay loop>
+                <source src="${currentBackground}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>`;
+        }
+    </script>
 </head>
 <body>
     <div id="result"></div>
     <header>
-    <input type="number" id="caharahBussy" name="caharahBussy" value="1" style="width:1.5%">
-    <button onclick="flipCoin(event)">Flip Coin</button>
+        <select id="backgroundSelect" onchange="changeBackground()">
+            <option value="none">None</option>
+            <option value="Busting it down in the dungeons.mp4">Busting it down in the dungeons</option>
+            <option value="tail">Tail</option>
+        </select>
+        <input type="number" id="caharahBussy" name="caharahBussy" value="1" style="width:1.5%">
+        <button onclick="flipCoin(event)">Flip Coin</button>
     </header>
 
+    <div id="backgroundDance" style="z-index: -2 position: fixed;"/>
+    
+
     <script>
-        let numberGlobal = 0;
+        let numberGlobal = 10;
         let lowresCutoff = 6;
+        let currentBackground = "none";
         const tailsNorm="tail.mp4"
         const tailsLow="tailLow.mp4"
         const headsNorm="head.mp4"
@@ -95,10 +120,11 @@
                 ${getCoinsNOWBitch(result)}
             </div>
             `;
-            console.log(getCoinsNOWBitch(result));
             resultDiv.innerHTML=innerHTML;
 
         }
+
+
     </script>
 </body>
 </html>
