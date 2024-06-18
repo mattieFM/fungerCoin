@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Flip</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: black;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            background-color: black;
+
+        }
+        video {
+            margin-top: 20px;
+            max-width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <div id="result"></div>
+    <header>
+    <button onclick="flipCoin()">Flip Coin</button>
+    </header>
+
+    <script>
+        function flipCoin() {
+            const resultDiv = document.getElementById('result');
+            const isHeads = Math.random() < 0.5;
+            const videoSrc = isHeads ? 'head.mp4' : 'tail.mp4';
+
+            resultDiv.innerHTML = `
+                <video autoplay>
+                    <source src="${videoSrc}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            `;
+        }
+    </script>
+</body>
+</html>
